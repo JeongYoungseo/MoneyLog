@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- 제목 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="거래 추가"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!-- 수입 / 지출 -->
+        <RadioGroup
+            android:id="@+id/rgType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbExpense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지출" />
+
+            <RadioButton
+                android:id="@+id/rbIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수입" />
+        </RadioGroup>
+
+        <!-- 금액 -->
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="금액 입력"
+            android:inputType="number" />
+
+        <!-- 카테고리 -->
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+        <!-- 날짜 -->
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="2026-06-18"
+            android:textSize="16sp" />
+
+        <!-- 메모 -->
+        <EditText
+            android:id="@+id/etMemo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="메모 입력" />
+
+        <!-- 저장 버튼 -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="저장하기" />
+
+    </LinearLayout>
+
+</ScrollView>
