@@ -13,20 +13,27 @@ import java.util.ArrayList;
 import kr.ac.kopo.moneylog.R;
 import kr.ac.kopo.moneylog.model.Transaction;
 
-public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
+public class TransactionAdapter
+        extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private ArrayList<Transaction> transactionList;
-    public TransactionAdapter(ArrayList<Transaction> transactionList) {
-        this.transactionList = transactionList;
+    private OnItemClickListener listener;
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
-
+    public TransactionAdapter(
+            ArrayList<Transaction> transactionList, OnItemClickListener listener) {
+        this.transactionList = transactionList;
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_transaction, parent, false);
+                .inflate(
+                        R.layout.item_transaction, parent, false);
         return new ViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Transaction transaction = transactionList.get(position);
@@ -37,21 +44,22 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         } else {
             holder.tvAmount.setText("- " + transaction.getAmount() + "원");
         }
+        holder.itemView.setOnClickListener(v -> {
+            listener.onItemClick(position);
+        });
     }
-
     @Override
     public int getItemCount() {
         return transactionList.size();
     }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder
+            extends RecyclerView.ViewHolder {
         TextView tvCategory;
         TextView tvMemo;
         TextView tvAmount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             tvCategory = itemView.findViewById(R.id.tvCategory);
             tvMemo = itemView.findViewById(R.id.tvMemo);
             tvAmount = itemView.findViewById(R.id.tvAmount);
